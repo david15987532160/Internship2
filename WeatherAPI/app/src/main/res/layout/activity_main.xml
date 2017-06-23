@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#00ddff"
+    tools:context="com.example.quocanhnguyen.weatherapi.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_marginLeft="2dp"
+            android:id="@+id/editTextSearch"
+            android:hint="City, State"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_marginLeft="10dp"
+            android:text="Search"
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/textViewName"
+        android:textSize="24sp"
+        android:text="City: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/textViewCountry"
+        android:textSize="24sp"
+        android:text="Country: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imageViewIcon"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:id="@+id/textViewTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:text="Temp"
+        android:textAlignment="center"
+        android:textColor="#f00"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:text="Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/humidity" />
+            <TextView
+                android:textSize="20sp"
+                android:text="Humidity"
+                android:id="@+id/textViewHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/cloud" />
+            <TextView
+                android:id="@+id/textViewCloud"
+                android:textSize="24sp"
+                android:text="Cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/wind" />
+            <TextView
+                android:textSize="24sp"
+                android:text="Wind"
+                android:id="@+id/textViewWind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:text="DD/MM/YYYY"
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:id="@+id/buttonNextDay"
+        android:text="Next days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
