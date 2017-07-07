@@ -71,37 +71,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                });
 //            }
 //        });
-       btnLoad.setOnClickListener(this);
+        btnLoad.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if (API_KEY.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
-            return;
-        }
+        Button button = (Button) v;
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        switch (button.getId()) {
+            case R.id.buttonLoad:
+                if (API_KEY.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movies_recycler_view);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        Call<MoviesResponse> call = apiInterface.getTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<MoviesResponse>() {
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                int statuCode = response.code();
-                movies = response.body().getResults();
+                ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                Call<MoviesResponse> call = apiInterface.getTopRatedMovies(API_KEY);
+
+                call.enqueue(new Callback<MoviesResponse>() {
+                    @Override
+                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                        int statuCode = response.code();
+                        movies = response.body().getResults();
 //                Log.d(TAG, "Number of movies received: " + movies.size());
-                adapter = new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext());
-                recyclerView.setAdapter(adapter);
-            }
+                        adapter = new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext());
+                        recyclerView.setAdapter(adapter);
+                    }
 
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                Log.e(TAG, t.toString());
-            }
-        });
+                    @Override
+                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                        Log.e(TAG, t.toString());
+                    }
+                });
+                break;
+        }
     }
 }
