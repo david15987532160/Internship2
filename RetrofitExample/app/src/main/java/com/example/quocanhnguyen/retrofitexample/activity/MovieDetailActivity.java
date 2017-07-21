@@ -1,16 +1,14 @@
 package com.example.quocanhnguyen.retrofitexample.activity;
 
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.quocanhnguyen.retrofitexample.R;
 import com.example.quocanhnguyen.retrofitexample.adapter.MoviesAdapter;
-import com.example.quocanhnguyen.retrofitexample.model.Movie;
+import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentDetail;
-import com.snappydb.SnappydbException;
 
 import java.util.List;
 
@@ -27,32 +25,23 @@ public class MovieDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ID = intent.getIntExtra("id", 0);
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentDetail fragmentDetail = null;
-
-        try {
-            fragmentDetail = new FragmentDetail();
-        } catch (SnappydbException e) {
-            e.printStackTrace();
-        }
-
-        Bundle(fragmentDetail);
-
-        fragmentTransaction.add(R.id.myFrameLayout, fragmentDetail, "detailFrag");
-        fragmentTransaction.addToBackStack("detail");
-        fragmentTransaction.commit();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        FragmentDetail fragmentDetail = null;
+//
+//        try {
+//            fragmentDetail = new FragmentDetail();
+//        } catch (SnappydbException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Bundle(fragmentDetail);
+//
+//        fragmentTransaction.add(R.id.myFrameLayout, fragmentDetail, "detailFrag");
+//        fragmentTransaction.addToBackStack("detail");
+//        fragmentTransaction.commit();
 
         // add favortie movie here
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
-        } else {
-            super.onBackPressed();
-        }
     }
 
     protected void Bundle(FragmentDetail fragmentDetail) {

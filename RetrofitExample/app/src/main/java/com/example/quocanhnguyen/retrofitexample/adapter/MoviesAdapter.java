@@ -9,16 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.quocanhnguyen.retrofitexample.R;
+import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
-    private List<com.example.quocanhnguyen.retrofitexample.model.Movie> movieList;
+    private List<Movie> movieList;
     private int layout; //= R.layout.list_item_movie
     private Context context;
 
-    public MoviesAdapter(List<com.example.quocanhnguyen.retrofitexample.model.Movie> movies, int list_item_movie, Context applicationContext) {
+    public MoviesAdapter(List<Movie> movies, int list_item_movie, Context applicationContext) {
         movieList = movies;
         layout = list_item_movie;
         context = applicationContext;

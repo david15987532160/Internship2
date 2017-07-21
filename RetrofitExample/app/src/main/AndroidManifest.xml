@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme">
 
         <!--login activity-->
-        <activity android:name=".activity.login.LoginActivity">
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:label="@string/log_in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,12 +23,14 @@
             </intent-filter>
         </activity>
 
+        <!-- main activity -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/title_activity_main"></activity>
+
         <!-- movie detail activity -->
         <activity android:name=".activity.MovieDetailActivity" />
 
-        <!-- main activity -->
-        <activity android:name=".activity.MainActivity">
-        </activity>
     </application>
 
 </manifest>

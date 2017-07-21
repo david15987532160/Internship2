@@ -1,4 +1,4 @@
-package com.example.quocanhnguyen.retrofitexample.model;
+package com.example.quocanhnguyen.retrofitexample.model.movie;
 
 import com.google.gson.annotations.SerializedName;
 

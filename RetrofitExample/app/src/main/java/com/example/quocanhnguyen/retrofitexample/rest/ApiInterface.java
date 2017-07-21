@@ -1,6 +1,6 @@
 package com.example.quocanhnguyen.retrofitexample.rest;
 
-import com.example.quocanhnguyen.retrofitexample.model.MoviesResponse;
+import com.example.quocanhnguyen.retrofitexample.model.movie.MoviesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.example.quocanhnguyen.retrofitexample.R;
 import com.snappydb.SnappydbException;
@@ -16,7 +17,6 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
     WebView webView;
     Bundle bundle;
     String url = "";
-//    DB snapdb = DBFactory.open(getContext(), "favorite movies");
 
     public FragmentDetail() throws SnappydbException {
     }
@@ -27,6 +27,7 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         webView = (WebView) view.findViewById(R.id.webView);
         view.findViewById(R.id.addFavorite).setOnClickListener(this);
+        view.findViewById(R.id.showFavorite).setOnClickListener(this);
 
         bundle = getArguments();
 
@@ -43,12 +44,10 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addFavorite:
-//                try {
-//                    snapdb.put("url", url);
-//                    snapdb.putInt("id", bundle.getInt("Id"));
-//                } catch (SnappydbException e) {
-//                    e.printStackTrace();
-//                }
+                Toast.makeText(getContext(), bundle.getString("title") + " is added to favorite", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.showFavorite:
+                Toast.makeText(getContext(), bundle.getString("title") + " is in favorite list", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

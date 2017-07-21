@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 
 public class DBManagerImpl implements DBManager {
+
     @Override
     public void Login(final String username, final String password, final onLoginFinishedListener listener) {
         new Handler().postDelayed(new Runnable() {
