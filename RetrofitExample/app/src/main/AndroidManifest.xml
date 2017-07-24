@@ -28,9 +28,6 @@
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"></activity>
 
-        <!-- movie detail activity -->
-        <activity android:name=".activity.MovieDetailActivity" />
-
     </application>
 
 </manifest>

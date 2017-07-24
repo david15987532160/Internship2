@@ -20,9 +20,10 @@ import com.example.quocanhnguyen.retrofitexample.activity.login.LoginActivity;
 import com.example.quocanhnguyen.retrofitexample.adapter.DividerItemDecoration;
 import com.example.quocanhnguyen.retrofitexample.adapter.MoviesAdapter;
 import com.example.quocanhnguyen.retrofitexample.adapter.RecycleTouchListener;
+import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentDetail;
+import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentFavorite;
 import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 import com.example.quocanhnguyen.retrofitexample.model.movie.MoviesResponse;
-import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentDetail;
 import com.example.quocanhnguyen.retrofitexample.rest.ApiClient;
 import com.example.quocanhnguyen.retrofitexample.rest.ApiInterface;
 import com.snappydb.SnappydbException;
@@ -39,9 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String API_KEY = "1cc34413d9db3cca9838cf168604cc36";
     FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction fragmentTransaction;
+    FragmentDetail fragmentDetail;
+    FragmentFavorite fragmentFavorite;
     Boolean exit = false;
 
-    @BindView(R.id.frameLayout)
+    @BindView(R.id.frameLayoutDetail)
     FrameLayout frameLayout;
 
     @BindView(R.id.movies_recycler_view)
@@ -56,29 +60,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        clickEvent();
+    }
+
+    private void clickEvent() {
         findViewById(R.id.buttonLoad).setOnClickListener(this);
+        findViewById(R.id.buttonShowFavor).setOnClickListener(this);
     }
-
-    @Override
-    public void onBackPressed() {
-        frameLayout.setVisibility(View.GONE);
-        if (exit) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//            finish(); // finish activity
-        } else {
-            Toast.makeText(this, "Press Back to return login screen", Toast.LENGTH_SHORT).show();
-            exit = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    exit = false;
-                }
-            }, 5 * 1000);
-
-        }
-//        super.onBackPressed();
-    }
-
 
     @Override
     public void onClick(View v) {
@@ -120,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                                        finish();
                                         // change here
 
-                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        FragmentDetail fragmentDetail = null;
+                                        fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentDetail = null;
 
                                         try {
                                             fragmentDetail = new FragmentDetail();
@@ -131,14 +119,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         Bundle(fragmentDetail);
 
-                                        fragmentTransaction.add(R.id.frameLayout, fragmentDetail, "detailFrag");
+                                        fragmentTransaction.add(R.id.frameLayoutDetail, fragmentDetail, "detailFrag");
                                         fragmentTransaction.addToBackStack("detail");
                                         fragmentTransaction.commit();
 
                                         frameLayout.setVisibility(View.VISIBLE);
 
                                         // add favortie movie here
-
+                                        Toast.makeText(MainActivity.this, "By long clicking the movie item you can see its detail on another browser",
+                                                Toast.LENGTH_LONG).show();
                                     }
 
                                     protected void Bundle(FragmentDetail fragmentDetail) {
@@ -188,8 +177,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 break;
+
+            case R.id.buttonShowFavor:
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentFavorite = new FragmentFavorite();
+
+                fragmentTransaction.add(R.id.frameLayoutDetail, fragmentFavorite, "fragFavor");
+                fragmentTransaction.addToBackStack("favorite");
+                fragmentTransaction.commit();
+
+                frameLayout.setVisibility(View.VISIBLE);
+//                Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        frameLayout.setVisibility(View.GONE);
+
+//        if (fragmentDetail != null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .remove(getSupportFragmentManager().findFragmentByTag("detailFrag")).commit();
+//        }
+//
+//        if (fragmentFavorite != null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .remove(getSupportFragmentManager().findFragmentByTag("favorite")).commit();
+//        }
+
+        if (exit) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//            finish(); // finish activity
+        } else {
+//            Toast.makeText(this, "Press Back again to return login screen", Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
         }
     }
 }

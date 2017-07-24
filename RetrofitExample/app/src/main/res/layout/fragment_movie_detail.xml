@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="1">
 
         <Button
             android:id="@+id/addFavorite"
@@ -26,21 +26,22 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="3dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:drawableLeft="@drawable/star"
             android:drawableTint="@color/colorAccent"
             android:text="Add to favorite" />
 
-        <Button
-            android:id="@+id/showFavorite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:drawableLeft="@android:drawable/ic_menu_slideshow"
-            android:text="Favorite movies" />
+        <!--<Button-->
+            <!--android:id="@+id/showFavorite"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableLeft="@android:drawable/ic_menu_slideshow"-->
+            <!--android:text="Favorite movies" />-->
 
     </LinearLayout>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/movies_layout"
+    android:id="@+id/favorite_list_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -11,7 +11,7 @@
     android:weightSum="3">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewFav"
         android:layout_width="0dp"
         android:layout_height="110dp"
         android:layout_gravity="left"
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titleFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -38,14 +38,14 @@
 
 
         <TextView
-            android:id="@+id/subtitle"
+            android:id="@+id/subtitleFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="16dp"
             android:textColor="@color/colorGreyLight" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/descriptionFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="3"
@@ -61,7 +61,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/rating_image"
+            android:id="@+id/rating_imageFav"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_centerInParent="true"
@@ -71,7 +71,7 @@
 
 
         <TextView
-            android:id="@+id/rating"
+            android:id="@+id/ratingFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

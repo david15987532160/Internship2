@@ -45,7 +45,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
     }
 
-
     @Override
     public MoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(layout, parent, false);
@@ -55,11 +54,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-        holder.movieTitle.setText(movieList.get(position).getTitle());
-        holder.data.setText(movieList.get(position).getReleaseDate());
-        holder.movieDescription.setText(movieList.get(position).getOverview());
-        holder.rating.setText(movieList.get(position).getVoteAverage().toString());
-        Picasso.with(context).load("https://image.tmdb.org/t/p/original/" + movieList.get(position).getPosterPath()).into(holder.image);
+        Movie movie = movieList.get(position);
+        holder.movieTitle.setText(movie.getTitle());
+        holder.data.setText(movie.getReleaseDate());
+        holder.movieDescription.setText(movie.getOverview());
+        holder.rating.setText(movie.getVoteAverage().toString());
+        Picasso.with(context).load("https://image.tmdb.org/t/p/original/" + movie.getPosterPath()).into(holder.image);
     }
 
     @Override
