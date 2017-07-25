@@ -1,7 +1,6 @@
 package com.example.quocanhnguyen.retrofitexample.activity.login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.quocanhnguyen.retrofitexample.R;
 import com.example.quocanhnguyen.retrofitexample.activity.MainActivity;
+import com.example.quocanhnguyen.retrofitexample.model.data.prefs.SharedPrefs;
 import com.example.quocanhnguyen.retrofitexample.presenter.LoginPresenter;
 import com.example.quocanhnguyen.retrofitexample.presenter.LoginPresenterImpl;
 
@@ -19,9 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
-    String USERNAME_KEY = "username";
-    String PASSWORD_KEY = "password";
-
     @BindView(R.id.progress)
     ProgressBar progressBar;
     @BindView(R.id.username)
@@ -31,8 +28,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     @BindView(R.id.checkBox)
     CheckBox checkBox;
     private LoginPresenter loginPresenter;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +35,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
-        sharedPreferences = getSharedPreferences("loginPreferences", MODE_PRIVATE);
-        edtUsername.setText(sharedPreferences.getString(USERNAME_KEY, ""));
-        edtPassword.setText(sharedPreferences.getString(PASSWORD_KEY, ""));
-
+        SharedPrefs.Init(getApplicationContext());
+        edtUsername.setText(SharedPrefs.get(SharedPrefs.USERNAME_KEY, ""));
+        edtPassword.setText(SharedPrefs.get(SharedPrefs.PASSWORD_KEY, ""));
         loginPresenter = new LoginPresenterImpl(this);
 
     }
 
     @Override
     public void onBackPressed() {
-//        System.exit(0);
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -66,10 +59,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     @Override
     public void onClick(View v) {
         if (checkBox.isChecked()) {
-            editor = sharedPreferences.edit();
-            editor.putString(USERNAME_KEY, edtUsername.getText().toString().trim());
-            editor.putString(PASSWORD_KEY, edtPassword.getText().toString());
-            editor.commit();
+            SharedPrefs.put(SharedPrefs.USERNAME_KEY, edtUsername.getText().toString().trim());
+            SharedPrefs.put(SharedPrefs.PASSWORD_KEY, edtPassword.getText().toString());
         }
         loginPresenter.validateCredential(edtUsername.getText().toString(), edtPassword.getText().toString());
     }
@@ -106,7 +97,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
     @Override
     public void toHomeScreen() {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }

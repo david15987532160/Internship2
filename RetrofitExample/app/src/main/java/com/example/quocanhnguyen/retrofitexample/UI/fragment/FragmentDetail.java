@@ -1,7 +1,6 @@
-package com.example.quocanhnguyen.retrofitexample.model.fragment;
+package com.example.quocanhnguyen.retrofitexample.UI.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,12 +11,13 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.example.quocanhnguyen.retrofitexample.R;
+import com.example.quocanhnguyen.retrofitexample.model.data.prefs.SharedPrefs;
 import com.snappydb.SnappydbException;
 
 public class FragmentDetail extends Fragment implements View.OnClickListener {
-    WebView webView;
-    Bundle bundle;
-    String url = "";
+    private WebView webView;
+    private Bundle bundle;
+    private String url = "";
 
     public FragmentDetail() throws SnappydbException {
     }
@@ -28,8 +28,8 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         webView = (WebView) view.findViewById(R.id.webView);
         view.findViewById(R.id.addFavorite).setOnClickListener(this);
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        FragmentDetail fragmentDetail = (FragmentDetail) getFragmentManager().findFragmentByTag("detailFrag");
+//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//        FragmentDetail fragmentDetail = (FragmentDetail) getFragmentManager().findFragmentByTag("detailFrag");
 
         bundle = getArguments();
 
@@ -38,12 +38,6 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
             url = "https://www.themoviedb.org/movie/" + bundle.getInt("Id");
             webView.loadUrl(url);
         }
-
-//        if (fragmentDetail != null) {
-//            fragmentTransaction.remove(fragmentDetail);
-//            fragmentTransaction.commit();
-//        }
-
         return view;
     }
 
@@ -51,6 +45,7 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addFavorite:
+                SharedPrefs.put(SharedPrefs.ID, bundle.getInt("Id"));
                 Toast.makeText(getContext(), bundle.getString("title") + " movie is added to favorite", Toast.LENGTH_SHORT).show();
                 break;
 //            case R.id.showFavorite:

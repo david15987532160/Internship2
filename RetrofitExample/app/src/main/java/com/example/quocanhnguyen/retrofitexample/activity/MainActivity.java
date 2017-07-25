@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,16 +16,15 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.quocanhnguyen.retrofitexample.R;
+import com.example.quocanhnguyen.retrofitexample.UI.fragment.FragmentDetail;
+import com.example.quocanhnguyen.retrofitexample.UI.fragment.FragmentFavorite;
 import com.example.quocanhnguyen.retrofitexample.activity.login.LoginActivity;
-import com.example.quocanhnguyen.retrofitexample.adapter.DividerItemDecoration;
-import com.example.quocanhnguyen.retrofitexample.adapter.MoviesAdapter;
-import com.example.quocanhnguyen.retrofitexample.adapter.RecycleTouchListener;
-import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentDetail;
-import com.example.quocanhnguyen.retrofitexample.model.fragment.FragmentFavorite;
+import com.example.quocanhnguyen.retrofitexample.model.data.rest.ApiClient;
+import com.example.quocanhnguyen.retrofitexample.model.data.rest.ApiInterface;
 import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 import com.example.quocanhnguyen.retrofitexample.model.movie.MoviesResponse;
-import com.example.quocanhnguyen.retrofitexample.rest.ApiClient;
-import com.example.quocanhnguyen.retrofitexample.rest.ApiInterface;
+import com.example.quocanhnguyen.retrofitexample.utils.adapter.MoviesAdapter;
+import com.example.quocanhnguyen.retrofitexample.utils.adapter.RecycleTouchListener;
 import com.snappydb.SnappydbException;
 
 import java.util.List;
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.frameLayoutDetail)
     FrameLayout frameLayout;
-
     @BindView(R.id.movies_recycler_view)
     RecyclerView recyclerView;
 
@@ -59,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,
+                DividerItemDecoration.VERTICAL));
         clickEvent();
     }
 
@@ -77,19 +77,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
                 final ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
                 Call<MoviesResponse> call = apiInterface.getTopRatedMovies(API_KEY);
-
                 call.enqueue(new Callback<MoviesResponse>() {
                     @Override
                     public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
 //                        int statuCode = response.code();
                         movies = response.body().getResults();
                         adapter = new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext());
-                        recyclerView.setItemAnimator(new DefaultItemAnimator());
-                        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, LinearLayoutManager.VERTICAL));
+                        //       recyclerView.setItemAnimator(new DefaultItemAnimator());
                         recyclerView.setAdapter(adapter);
 
                         recyclerView.addOnItemTouchListener(new RecycleTouchListener(getApplicationContext(), recyclerView, new RecycleTouchListener.ClickListener() {
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 Toast.LENGTH_LONG).show();
                                     }
 
-                                    protected void Bundle(FragmentDetail fragmentDetail) {
+                                    private void Bundle(FragmentDetail fragmentDetail) {
                                         Bundle bundle = new Bundle();
                                         int ID = movie.getId();
                                         String title = movie.getTitle();
@@ -144,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                     }
                                 });
-//                                Toast.makeText(MainActivity.this, movie.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -155,9 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     @Override
                                     public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                                         Intent intent = new Intent();
-                                        intent.setAction(intent.ACTION_VIEW);
+                                        intent.setAction(Intent.ACTION_VIEW);
                                         intent.setData(Uri.parse("https://www.themoviedb.org/movie/" + movie.getId()));
-//                                        intent.putExtra("id", movie.getId());
                                         startActivity(intent);
                                     }
 
@@ -166,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                     }
                                 });
-//                                Toast.makeText(MainActivity.this, movie.getOverview() + "", Toast.LENGTH_LONG).show();
                             }
                         }));
                     }
@@ -179,15 +172,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonShowFavor:
+//                final ApiInterface anInterface = ApiClient.getClient().create(ApiInterface.class);
+//                Call<MoviesResponse> detailsResponse = anInterface.getMovieDetails(SharedPrefs.get(SharedPrefs.ID, 0), API_KEY);
+//                detailsResponse.enqueue(new Callback<MoviesResponse>() {
+//                    @Override
+//                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+//                        movies = response.body().getResults();
+
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentFavorite = new FragmentFavorite();
 
-                fragmentTransaction.add(R.id.frameLayoutDetail, fragmentFavorite, "fragFavor");
+                Bundle bundle = new Bundle();
+                bundle.putString("api", API_KEY);
+                fragmentFavorite.setArguments(bundle);
+
+                fragmentTransaction.replace(R.id.frameLayoutDetail, fragmentFavorite, "fragFavor");
                 fragmentTransaction.addToBackStack("favorite");
                 fragmentTransaction.commit();
 
                 frameLayout.setVisibility(View.VISIBLE);
-//                Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+//
+//                    }
+//                });
                 break;
             default:
                 break;
@@ -197,17 +207,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         frameLayout.setVisibility(View.GONE);
-
-//        if (fragmentDetail != null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .remove(getSupportFragmentManager().findFragmentByTag("detailFrag")).commit();
-//        }
-//
-//        if (fragmentFavorite != null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .remove(getSupportFragmentManager().findFragmentByTag("favorite")).commit();
-//        }
-
         if (exit) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
 //            finish(); // finish activity
@@ -219,8 +218,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void run() {
                     exit = false;
                 }
-            }, 3 * 1000);
-
+            }, 2 * 1000);
         }
     }
 }

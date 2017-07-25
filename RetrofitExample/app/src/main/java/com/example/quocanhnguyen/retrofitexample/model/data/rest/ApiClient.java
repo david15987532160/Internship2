@@ -1,4 +1,4 @@
-package com.example.quocanhnguyen.retrofitexample.rest;
+package com.example.quocanhnguyen.retrofitexample.model.data.rest;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

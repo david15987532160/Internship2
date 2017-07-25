@@ -1,6 +1,7 @@
-package com.example.quocanhnguyen.retrofitexample.model.database;
+package com.example.quocanhnguyen.retrofitexample.model.data.database;
 
 public interface DBManager {
+
     interface onLoginFinishedListener {
         void onUsernameError();
 

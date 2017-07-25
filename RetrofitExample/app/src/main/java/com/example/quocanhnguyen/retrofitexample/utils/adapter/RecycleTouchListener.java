@@ -1,4 +1,4 @@
-package com.example.quocanhnguyen.retrofitexample.adapter;
+package com.example.quocanhnguyen.retrofitexample.utils.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

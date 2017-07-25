@@ -1,8 +1,8 @@
 package com.example.quocanhnguyen.retrofitexample.presenter;
 
 import com.example.quocanhnguyen.retrofitexample.activity.login.LoginView;
-import com.example.quocanhnguyen.retrofitexample.model.database.DBManager;
-import com.example.quocanhnguyen.retrofitexample.model.database.DBManagerImpl;
+import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManager;
+import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManagerImpl;
 
 public class LoginPresenterImpl implements LoginPresenter, DBManager.onLoginFinishedListener {
 

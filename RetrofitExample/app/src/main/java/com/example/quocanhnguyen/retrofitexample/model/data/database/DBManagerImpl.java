@@ -1,4 +1,4 @@
-package com.example.quocanhnguyen.retrofitexample.model.database;
+package com.example.quocanhnguyen.retrofitexample.model.data.database;
 
 import android.os.Handler;
 import android.text.TextUtils;
