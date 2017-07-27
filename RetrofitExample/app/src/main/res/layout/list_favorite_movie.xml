@@ -38,7 +38,7 @@
 
 
         <TextView
-            android:id="@+id/subtitleFav"
+            android:id="@+id/release_dateFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="16dp"

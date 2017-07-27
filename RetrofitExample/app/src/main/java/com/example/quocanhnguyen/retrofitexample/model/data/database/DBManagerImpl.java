@@ -41,4 +41,14 @@ public class DBManagerImpl implements DBManager {
             }
         }, 2000);
     }
+
+    @Override
+    public void findMovieItems(final onFinishedListener listener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                listener.onFinished();
+            }
+        }, 2000);
+    }
 }

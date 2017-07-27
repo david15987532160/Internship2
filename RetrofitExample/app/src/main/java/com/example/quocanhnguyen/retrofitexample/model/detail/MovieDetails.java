@@ -83,6 +83,14 @@ public class MovieDetails {
     @Expose
     private Integer voteCount;
 
+    public MovieDetails(MovieDetails movieDetails) {
+
+    }
+
+    public MovieDetails(String posterPath, String title, String releaseDate, String overview, Double voteAverage) {
+
+    }
+
     public Boolean getAdult() {
         return adult;
     }

@@ -12,10 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--login activity-->
+        <!-- login activity -->
         <activity
             android:name=".activity.login.LoginActivity"
-
             android:label="@string/log_in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +26,8 @@
         <!-- main activity -->
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main">
-        </activity>
-
+            android:label="@string/title_activity_main"></activity>
+        <activity android:name=".activity.favorite.FavoriteActivity"></activity>
     </application>
 
 </manifest>

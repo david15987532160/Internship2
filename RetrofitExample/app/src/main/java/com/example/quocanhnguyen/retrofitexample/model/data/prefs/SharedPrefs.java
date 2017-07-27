@@ -3,13 +3,17 @@ package com.example.quocanhnguyen.retrofitexample.model.data.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharedPrefs {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
     private static final String PREFS_NAME = "my_shared_preferences";
     public static final String USERNAME_KEY = "username";
     public static final String PASSWORD_KEY = "password";
-    public static final String ID = "";
+    public static final List<String> ID = new ArrayList<>();
+//    public static final String ID = "";
 
     public SharedPrefs() {
     }
