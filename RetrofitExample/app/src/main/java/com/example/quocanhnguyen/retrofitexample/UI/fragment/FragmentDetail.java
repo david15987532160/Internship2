@@ -45,9 +45,13 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        boolean isAdded = false;
         switch (v.getId()) {
             case R.id.addFavorite:
-//                for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
+                for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
+                    if (String.valueOf(ID).equals(SharedPrefs.ID.get(i))) {
+                        isAdded = true;
+                    }
 //                    if (SharedPrefs.ID.get(i).equals(String.valueOf(ID))) {
 //                        Toast.makeText(getContext(), bundle.getString("title") + " movie is already in your favorite list", Toast.LENGTH_SHORT).show();
 //                        return;
@@ -55,9 +59,13 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
 //                        SharedPrefs.ID.add(new String(String.valueOf(ID)));
 //                        Toast.makeText(getContext(), bundle.getString("title") + " movie is added to favorite", Toast.LENGTH_SHORT).show();
 //                    }
-//                }
-                SharedPrefs.ID.add(new String(String.valueOf(ID)));
-                Toast.makeText(getContext(), bundle.getString("title") + " movie is added to favorite", Toast.LENGTH_SHORT).show();
+                }
+                if (!isAdded) {
+                    SharedPrefs.ID.add(new String(String.valueOf(ID)));
+                    Toast.makeText(getContext(), bundle.getString("title") + " movie is added to favorite", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), bundle.getString("title") + " movie is already in your favorite list", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;

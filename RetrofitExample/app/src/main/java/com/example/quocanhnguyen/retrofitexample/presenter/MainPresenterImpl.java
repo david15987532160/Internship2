@@ -2,9 +2,13 @@ package com.example.quocanhnguyen.retrofitexample.presenter;
 
 import com.example.quocanhnguyen.retrofitexample.activity.MainView;
 import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManager;
+import com.example.quocanhnguyen.retrofitexample.model.data.rest.ApiInterface;
 import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
+import com.example.quocanhnguyen.retrofitexample.model.movie.MoviesResponse;
 
 import java.util.List;
+
+import retrofit2.Call;
 
 public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedListener {
     private MainView mainView;
@@ -22,6 +26,11 @@ public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedLis
         }
 
         dbManager.findMovieItems(this);
+    }
+
+    @Override
+    public void loadMovieList(ApiInterface apiInterface, Call<MoviesResponse> call) {
+
     }
 
     @Override
