@@ -24,8 +24,15 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="0.98"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical">
+    </android.support.v7.widget.RecyclerView>
 
+    <ProgressBar
+        android:id="@+id/progressMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,12 +67,5 @@
             android:text="Favorited movies" />
 
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progressMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
 
 </LinearLayout>

@@ -83,12 +83,32 @@ public class MovieDetails {
     @Expose
     private Integer voteCount;
 
-    public MovieDetails(MovieDetails movieDetails) {
-
-    }
-
-    public MovieDetails(String posterPath, String title, String releaseDate, String overview, Double voteAverage) {
-
+    public MovieDetails(Boolean adult, String backdropPath, Object belongsToCollection, Integer budget, List<Genre> genres, String homepage, Integer id, String imdbId, String originalLanguage, String originalTitle, String overview, Double popularity, String posterPath, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, String releaseDate, Integer revenue, Integer runtime, List<SpokenLanguage> spokenLanguages, String status, String tagline, String title, Boolean video, Double voteAverage, Integer voteCount) {
+        this.adult = adult;
+        this.backdropPath = backdropPath;
+        this.belongsToCollection = belongsToCollection;
+        this.budget = budget;
+        this.genres = genres;
+        this.homepage = homepage;
+        this.id = id;
+        this.imdbId = imdbId;
+        this.originalLanguage = originalLanguage;
+        this.originalTitle = originalTitle;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.posterPath = posterPath;
+        this.productionCompanies = productionCompanies;
+        this.productionCountries = productionCountries;
+        this.releaseDate = releaseDate;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.spokenLanguages = spokenLanguages;
+        this.status = status;
+        this.tagline = tagline;
+        this.title = title;
+        this.video = video;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
     }
 
     public Boolean getAdult() {

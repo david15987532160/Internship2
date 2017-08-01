@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.example.quocanhnguyen.retrofitexample.R;
@@ -68,7 +69,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<MovieDetails> call, Throwable t) {
-
+                    Log.e("Error!", t.toString());
                 }
             });
         }
@@ -94,7 +95,6 @@ public class FavoriteActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        which = position;
                         list.remove(position);
                         SharedPrefs.ID.remove(position);
                         adapter.notifyDataSetChanged();

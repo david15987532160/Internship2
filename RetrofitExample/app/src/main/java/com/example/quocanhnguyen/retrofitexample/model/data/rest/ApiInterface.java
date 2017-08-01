@@ -17,4 +17,10 @@ public interface ApiInterface {
 
     @GET("movie/{id}")
     Call<MovieDetails> getMovie_Details(@Path("id") int id, @Query("api_key") String apiKey);
+
+    @GET("movie/upcoming")
+    Call<MoviesResponse> getUpcomingMovies(@Query("id") String apiKey);
+
+    @GET("movie/popular")
+    Call<MoviesResponse> getPopularMovies(@Query("id") String apiKey);
 }

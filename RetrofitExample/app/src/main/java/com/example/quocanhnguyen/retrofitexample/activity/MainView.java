@@ -10,4 +10,8 @@ public interface MainView {
     void hideProgress();
 
     void setMovieItems(List<Movie> items);
+
+    void showFragMovieDetail(Movie movie);
+
+    void showMovieDetail(Movie movie);
 }

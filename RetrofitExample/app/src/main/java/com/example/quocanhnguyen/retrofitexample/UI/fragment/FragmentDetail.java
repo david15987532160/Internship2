@@ -71,5 +71,4 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
 }

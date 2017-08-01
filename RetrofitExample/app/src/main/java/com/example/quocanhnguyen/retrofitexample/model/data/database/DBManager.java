@@ -7,6 +7,7 @@ import java.util.List;
 public interface DBManager {
 
     interface onLoginFinishedListener {
+
         void onUsernameError();
 
         void onPasswordError();
@@ -19,6 +20,7 @@ public interface DBManager {
     }
 
     interface onFinishedListener {
+        
         void onFinished(List<Movie> items);
     }
 
