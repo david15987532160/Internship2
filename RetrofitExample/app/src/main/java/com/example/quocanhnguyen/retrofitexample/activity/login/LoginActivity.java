@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         edtUsername.setText(SharedPrefs.get(SharedPrefs.USERNAME_KEY, ""));
         edtPassword.setText(SharedPrefs.get(SharedPrefs.PASSWORD_KEY, ""));
         loginPresenter = new LoginPresenterImpl(this);
-
     }
 
     @Override

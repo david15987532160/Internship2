@@ -6,7 +6,7 @@ import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 
 import java.util.List;
 
-public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedListener {
+public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedTop_ratedListener, DBManager.onFinishedUpcomingListener, DBManager.onFinishedPopularListener {
     private MainView mainView;
     private DBManager dbManager;
     private List<Movie> movieList;
@@ -17,16 +17,32 @@ public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedLis
     }
 
     @Override
-    public void onLoadList() {
+    public void onLoadTop_rated() {
         if (mainView != null) {
             mainView.showProgress();
         }
-        dbManager.findMovieItems(this);
+        dbManager.findTop_ratedMovieItems(this);
+    }
+
+    @Override
+    public void onLoadUpcoming() {
+        if (mainView != null) {
+            mainView.showProgress();
+        }
+        dbManager.findUpcomingMovieItems(this);
+    }
+
+    @Override
+    public void onLoadPopular() {
+        if (mainView != null) {
+            mainView.showProgress();
+        }
+        dbManager.findPopularMovieItems(this);
     }
 
     @Override
     public void onItemClicked(int position) {
-        if(mainView != null){
+        if (mainView != null) {
             mainView.showFragMovieDetail(movieList.get(position));
         }
     }
@@ -44,7 +60,25 @@ public class MainPresenterImpl implements MainPresenter, DBManager.onFinishedLis
     }
 
     @Override
-    public void onFinished(List<Movie> items) {
+    public void onFinishedTop_rated(List<Movie> items) {
+        if (mainView != null) {
+            mainView.setMovieItems(items);
+            movieList = items;
+            mainView.hideProgress();
+        }
+    }
+
+    @Override
+    public void onFinishedUpcoming(List<Movie> items) {
+        if (mainView != null) {
+            mainView.setMovieItems(items);
+            movieList = items;
+            mainView.hideProgress();
+        }
+    }
+
+    @Override
+    public void onFinishedPopular(List<Movie> items) {
         if (mainView != null) {
             mainView.setMovieItems(items);
             movieList = items;

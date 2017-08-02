@@ -19,12 +19,24 @@ public interface DBManager {
         void onSuccess();
     }
 
-    interface onFinishedListener {
+    interface onFinishedTop_ratedListener {
         
-        void onFinished(List<Movie> items);
+        void onFinishedTop_rated(List<Movie> items);
+    }
+
+    interface onFinishedUpcomingListener {
+        void onFinishedUpcoming(List<Movie> items);
+    }
+
+    interface onFinishedPopularListener {
+        void onFinishedPopular(List<Movie> items);
     }
 
     void Login(String username, String password, onLoginFinishedListener listener);
 
-    void findMovieItems(onFinishedListener listener);
+    void findTop_ratedMovieItems(onFinishedTop_ratedListener listener);
+
+    void findUpcomingMovieItems(onFinishedUpcomingListener listener);
+
+    void findPopularMovieItems(onFinishedPopularListener listener);
 }

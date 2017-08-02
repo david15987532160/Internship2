@@ -15,7 +15,7 @@ public class Movie {
     @SerializedName("release_date")
     private String releaseDate;
     @SerializedName("genre_ids")
-    private List<Integer> genreIds = new ArrayList<Integer>();
+    private List<Integer> genreIds = new ArrayList<>();
     @SerializedName("id")
     private Integer id;
     @SerializedName("original_title")

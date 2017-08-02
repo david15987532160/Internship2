@@ -29,8 +29,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         View favLayout;
         TextView movieTitle;
         TextView data;
-        TextView movieDescription;
+        //        TextView movieDescription;
         TextView rating;
+        TextView genres;
         ImageView image;
 
 
@@ -39,8 +40,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             favLayout = v.findViewById(R.id.favorite_layout);
             movieTitle = (TextView) v.findViewById(R.id.titleFav);
             data = (TextView) v.findViewById(R.id.release_dateFav);
-            movieDescription = (TextView) v.findViewById(R.id.descriptionFav);
+//            movieDescription = (TextView) v.findViewById(R.id.descriptionFav);
             rating = (TextView) v.findViewById(R.id.ratingFav);
+            genres = (TextView) v.findViewById(R.id.genresFav);
             image = (ImageView) v.findViewById(R.id.imageViewFav);
         }
     }
@@ -54,10 +56,20 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @Override
     public void onBindViewHolder(FavoriteAdapter.FavoriteViewHolder holder, int position) {
         MovieDetails movie = list.get(position);
+        StringBuilder stringBuilder = new StringBuilder();
         holder.movieTitle.setText(movie.getTitle());
         holder.data.setText(movie.getReleaseDate());
-        holder.movieDescription.setText(movie.getOverview());
+//        holder.movieDescription.setText(movie.getOverview());
         holder.rating.setText(movie.getVoteAverage().toString());
+        stringBuilder.append("Genres: ");
+        for (int i = 0; i < movie.getGenres().size(); ++i) {
+            if (i == movie.getGenres().size() - 1) {
+                stringBuilder.append(movie.getGenres().get(i).getName());
+            } else {
+                stringBuilder.append(movie.getGenres().get(i).getName() + ", ");
+            }
+        }
+        holder.genres.setText(stringBuilder.toString());
         Picasso.with(context).load("https://image.tmdb.org/t/p/original/" + movie.getPosterPath()).into(holder.image);
     }
 

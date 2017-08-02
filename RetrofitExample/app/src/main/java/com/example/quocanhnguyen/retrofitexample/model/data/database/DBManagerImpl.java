@@ -57,7 +57,7 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public void findMovieItems(final onFinishedListener listener) {
+    public void findTop_ratedMovieItems(final onFinishedTop_ratedListener listener) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -67,7 +67,53 @@ public class DBManagerImpl implements DBManager {
                     @Override
                     public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                         movies = response.body().getResults();
-                        listener.onFinished(movies);
+                        listener.onFinishedTop_rated(movies);
+                    }
+
+                    @Override
+                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                        Log.e("Error!!!", t.toString());
+                    }
+                });
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void findUpcomingMovieItems(final onFinishedUpcomingListener listener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                Call<MoviesResponse> call = apiInterface.getUpcomingMovies(SharedPrefs.API_KEY);
+                call.enqueue(new Callback<MoviesResponse>() {
+                    @Override
+                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                        movies = response.body().getResults();
+                        listener.onFinishedUpcoming(movies);
+                    }
+
+                    @Override
+                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                        Log.e("Error!!!", t.toString());
+                    }
+                });
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void findPopularMovieItems(final onFinishedPopularListener listener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                Call<MoviesResponse> call = apiInterface.getPopularMovies(SharedPrefs.API_KEY);
+                call.enqueue(new Callback<MoviesResponse>() {
+                    @Override
+                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                        movies = response.body().getResults();
+                        listener.onFinishedPopular(movies);
                     }
 
                     @Override

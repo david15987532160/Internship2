@@ -1,10 +1,12 @@
 package com.example.quocanhnguyen.retrofitexample.activity;
 
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,10 +37,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainView {
-    //    private static final String API_KEY = "1cc34413d9db3cca9838cf168604cc36";
-//    FragmentManager fragmentManager = getFragmentManager();
-//    FragmentTransaction fragmentTransaction;
-//    FragmentDetail fragmentDetail;
     Boolean exit = false;
 
     @BindView(R.id.frameLayoutDetail)
@@ -82,19 +80,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void clickEvent() {
-        findViewById(R.id.buttonLoad).setOnClickListener(this);
+        findViewById(R.id.buttonTop_rated).setOnClickListener(this);
+        findViewById(R.id.buttonUpcoming).setOnClickListener(this);
+        findViewById(R.id.buttonPopular).setOnClickListener(this);
         findViewById(R.id.buttonShowFavor).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonLoad:
+            case R.id.buttonTop_rated:
                 if (SharedPrefs.API_KEY.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
                     return;
                 }
-                presenter.onLoadList();
+                presenter.onLoadTop_rated();
+                break;
+
+            case R.id.buttonUpcoming:
+                if (SharedPrefs.API_KEY.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                presenter.onLoadUpcoming();
+                break;
+
+            case R.id.buttonPopular:
+                if (SharedPrefs.API_KEY.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                presenter.onLoadPopular();
                 break;
 
             case R.id.buttonShowFavor:
@@ -102,15 +118,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
                     id.add(new String(SharedPrefs.ID.get(i)));
                 }
-                if (id != null) {
+                if (id.isEmpty()) {
+                    Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
+                } else /*if (id != null)*/ {
                     Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
                     intent.putExtra("api", SharedPrefs.API_KEY);
                     intent.putExtra("id", (Serializable) id);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
             default:
                 break;
         }
@@ -120,9 +137,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         frameLayout.setVisibility(View.GONE);
         if (exit) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Notice!!!");
+            builder.setMessage("Do you want to log out?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
         } else {
-            Toast.makeText(this, "Press Back again to return login screen", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Press Back again to logout", Toast.LENGTH_SHORT).show();
             exit = true;
             new Handler().postDelayed(new Runnable() {
                 @Override

@@ -9,5 +9,7 @@
     <string name="username_error">Username cannot be empty</string>
     <string name="password_error">Password cannot be empty</string>
     <string name="incorrect_username_password">Incorrect username or password</string>
+    <string name="action_back">action_back</string>
+    <string name="action_forward">action_forward</string>
 
 </resources>

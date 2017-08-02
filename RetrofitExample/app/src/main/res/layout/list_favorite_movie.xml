@@ -31,6 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
+            android:paddingTop="3dp"
+            android:paddingLeft="5dp"
             android:paddingRight="16dp"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"
@@ -41,16 +43,30 @@
             android:id="@+id/release_dateFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:paddingLeft="5dp"
             android:paddingRight="16dp"
             android:textColor="@color/colorGreyLight" />
 
         <TextView
-            android:id="@+id/descriptionFav"
+            android:id="@+id/genresFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="3"
+            android:maxLines="2"
+            android:paddingTop="3dp"
+            android:paddingLeft="5dp"
             android:paddingRight="16dp"
             android:textColor="@color/colorGreyLight" />
+
+        <!--<TextView-->
+            <!--android:id="@+id/descriptionFav"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:maxLines="3"-->
+            <!--android:paddingTop="3dp"-->
+            <!--android:paddingRight="16dp"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:textColor="@color/colorGreyLight" />-->
 
     </LinearLayout>
 
@@ -68,7 +84,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/star"
             android:tint="@color/colorAccent" />
-
 
         <TextView
             android:id="@+id/ratingFav"

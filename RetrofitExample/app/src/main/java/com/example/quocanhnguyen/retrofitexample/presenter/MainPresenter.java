@@ -2,7 +2,11 @@ package com.example.quocanhnguyen.retrofitexample.presenter;
 
 public interface MainPresenter {
 
-    void onLoadList();
+    void onLoadTop_rated();
+
+    void onLoadUpcoming();
+
+    void onLoadPopular();
 
     void onItemClicked(int position);
 
