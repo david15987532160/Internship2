@@ -20,7 +20,8 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
     private WebView webView;
     private Bundle bundle;
     private String url = "";
-    private int ID;
+    private int ID = 0;
+    private boolean isLiked = false;
 
     public FragmentDetail() throws SnappydbException {
     }
@@ -37,6 +38,13 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
         bundle = getArguments();
         ID = bundle.getInt("Id");
 
+        for (int i = 0; i <SharedPrefs.ID.size(); ++i){
+            if (String.valueOf(ID).equals(SharedPrefs.ID.get(i))){
+                isLiked = true;
+            }
+        }
+        if (isLiked == true)
+            view.findViewById(R.id.addFavorite).setBackgroundResource(R.drawable.star);
         webView.setWebChromeClient(new MyWebChromeClient(getContext()));
 //        webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient());
@@ -72,9 +80,16 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
                 }
                 if (!isAdded) {
                     SharedPrefs.ID.add(new String(String.valueOf(ID)));
-                    Toast.makeText(getContext(), bundle.getString("title") + " movie is added to favorite", Toast.LENGTH_SHORT).show();
+                    v.findViewById(R.id.addFavorite).setBackgroundResource(R.drawable.star);
+                    Toast.makeText(getContext(), bundle.getString("title") + " is added to favorite", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), bundle.getString("title") + " movie is already in your favorite list", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < SharedPrefs.ID.size(); ++i){
+                        if (String.valueOf(ID).equals(SharedPrefs.ID.get(i))){
+                            SharedPrefs.ID.remove(i);
+                        }
+                    }
+                    v.findViewById(R.id.addFavorite).setBackgroundResource(R.drawable.ic_star_border);
+                    Toast.makeText(getContext(), bundle.getString("title") + " is removed from your favorite list", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.buttonBack:

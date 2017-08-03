@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,15 +31,12 @@ import com.example.quocanhnguyen.retrofitexample.utils.adapter.RecycleTouchListe
 import com.snappydb.SnappydbException;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainView {
-    Boolean exit = false;
-
     @BindView(R.id.frameLayoutDetail)
     FrameLayout frameLayout;
     @BindView(R.id.movies_recycler_view)
@@ -47,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressBar progressBar;
     MainPresenter presenter;
 
-
     MoviesAdapter adapter;
+    Boolean exit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,
                 DividerItemDecoration.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         RecycleTouchListener recycleTouchListener = new RecycleTouchListener(getApplicationContext(), recyclerView, new RecycleTouchListener.ClickListener() {
             @Override
@@ -114,16 +113,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonShowFavor:
-                List<String> id = new ArrayList<>();
-                for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
-                    id.add(new String(SharedPrefs.ID.get(i)));
-                }
-                if (id.isEmpty()) {
+                if (SharedPrefs.ID.isEmpty()) {
                     Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
-                } else /*if (id != null)*/ {
+                } else {
                     Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
                     intent.putExtra("api", SharedPrefs.API_KEY);
-                    intent.putExtra("id", (Serializable) id);
+                    intent.putExtra("id", (Serializable) SharedPrefs.ID);
                     startActivity(intent);
                 }
                 break;
@@ -165,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }, 2 * 1000);
         }
     }
+
 
     // design MVP pattern
 

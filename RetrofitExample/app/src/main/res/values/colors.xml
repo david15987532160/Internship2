@@ -13,4 +13,5 @@
     <color name="colorGreyLight">#8A8A8A</color>
 
     <color name="my_bluish_color">#FF82E7FD</color>
+    <color name="click_effect">#00976d</color>
 </resources>
