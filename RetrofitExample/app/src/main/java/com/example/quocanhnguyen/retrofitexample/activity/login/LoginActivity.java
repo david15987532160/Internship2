@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.quocanhnguyen.retrofitexample.R;
 import com.example.quocanhnguyen.retrofitexample.activity.MainActivity;
+import com.example.quocanhnguyen.retrofitexample.activity.signup.SignUpActivity;
 import com.example.quocanhnguyen.retrofitexample.model.data.prefs.SharedPrefs;
 import com.example.quocanhnguyen.retrofitexample.presenter.LoginPresenter;
 import com.example.quocanhnguyen.retrofitexample.presenter.LoginPresenterImpl;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
+        findViewById(R.id.signUp_link).setOnClickListener(this);
         SharedPrefs.Init(getApplicationContext());
         edtUsername.setText(SharedPrefs.get(SharedPrefs.USERNAME_KEY, ""));
         edtPassword.setText(SharedPrefs.get(SharedPrefs.PASSWORD_KEY, ""));
@@ -57,11 +59,23 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
     @Override
     public void onClick(View v) {
-        if (checkBox.isChecked()) {
-            SharedPrefs.put(SharedPrefs.USERNAME_KEY, edtUsername.getText().toString().trim());
-            SharedPrefs.put(SharedPrefs.PASSWORD_KEY, edtPassword.getText().toString());
+        switch (v.getId()) {
+            case R.id.buttonLogin:
+                if (checkBox.isChecked()) {
+                    SharedPrefs.put(SharedPrefs.USERNAME_KEY, edtUsername.getText().toString().trim());
+                    SharedPrefs.put(SharedPrefs.PASSWORD_KEY, edtPassword.getText().toString());
+                }
+                loginPresenter.validateCredential(edtUsername.getText().toString(), edtPassword.getText().toString());
+                break;
+
+            case R.id.signUp_link:
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
         }
-        loginPresenter.validateCredential(edtUsername.getText().toString(), edtPassword.getText().toString());
     }
 
     @Override

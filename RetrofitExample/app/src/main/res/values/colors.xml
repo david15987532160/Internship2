@@ -4,14 +4,15 @@
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="orange">#FF3909</color>
-    <color name="colorAccentDark">#00B482</color>
+    <color name="orange">#007453</color>
+    <color name="colorAccentDark">#00b380</color>
 
-    <color name="colorBlack">#555555</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorGrey">#707070</color>
-    <color name="colorGreyLight">#8A8A8A</color>
+    <color name="colorBlack">#151515</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGrey">#19192c</color>
+    <color name="colorDarkGrey">#616161</color>
+    <color name="colorGreyLight">#8a8a8a</color>
 
     <color name="my_bluish_color">#FF82E7FD</color>
-    <color name="click_effect">#00976d</color>
+    <color name="click_effect">#00a173</color>
 </resources>

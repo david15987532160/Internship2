@@ -4,12 +4,13 @@ import com.example.quocanhnguyen.retrofitexample.activity.favorite.FavoriteView;
 import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManager;
 import com.example.quocanhnguyen.retrofitexample.model.detail.MovieDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritePresenterImpl implements FavoritePresenter, DBManager.onFinishedFavoriteListener {
     private FavoriteView favoriteView;
     private DBManager dbManager;
-    private List<MovieDetails> movieList;
+    private List<MovieDetails> movieList = new ArrayList<>();
 
     public FavoritePresenterImpl(FavoriteView favoriteView, DBManager dbManager) {
         this.favoriteView = favoriteView;
@@ -35,7 +36,7 @@ public class FavoritePresenterImpl implements FavoritePresenter, DBManager.onFin
     @Override
     public void onItemLongClicked(int position) {
         if (favoriteView != null) {
-            favoriteView.removeFavMovie(movieList.get(position), position);
+            favoriteView.removeFavMovie(movieList, movieList.get(position), position);
         }
     }
 

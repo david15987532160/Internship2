@@ -9,9 +9,9 @@ public interface FavoriteView {
 
     void hideProgress();
 
-    void setFavoriteMovieItem(List<MovieDetails> movie);
+    void setFavoriteMovieItem(List<MovieDetails> detailsList);
 
-    void showFavMovieDetail(MovieDetails movie);
+    void showFavMovieDetail(MovieDetails movieDetails);
 
-    void removeFavMovie(MovieDetails movie, int position);
+    void removeFavMovie(List<MovieDetails> detailsList, MovieDetails movieDetails, int position);
 }

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +35,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainView {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainView, RecycleTouchListener.ClickListener {
     @BindView(R.id.frameLayoutDetail)
     FrameLayout frameLayout;
     @BindView(R.id.movies_recycler_view)
@@ -57,24 +56,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,
                 DividerItemDecoration.VERTICAL));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        RecycleTouchListener recycleTouchListener = new RecycleTouchListener(getApplicationContext(), recyclerView, new RecycleTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                if (presenter != null) {
-                    presenter.onItemClicked(position);
-                }
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                if (presenter != null) {
-                    presenter.onItemLongClicked(position);
-                }
-            }
-        });
-        recyclerView.addOnItemTouchListener(recycleTouchListener);
+//        RecycleTouchListener recycleTouchListener = new RecycleTouchListener(getApplicationContext(), recyclerView, new RecycleTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                if (presenter != null) {
+//                    presenter.onItemClicked(position);
+//                }
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//                if (presenter != null) {
+//                    presenter.onItemLongClicked(position);
+//                }
+//            }
+//        });
+        recyclerView.addOnItemTouchListener(new RecycleTouchListener(getApplicationContext(), recyclerView, this));
         clickEvent();
     }
 
@@ -223,5 +220,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://www.themoviedb.org/movie/" + movie.getId()));
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        if (presenter != null) {
+            presenter.onItemClicked(position);
+        }
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+        if (presenter != null) {
+            presenter.onItemLongClicked(position);
+        }
     }
 }

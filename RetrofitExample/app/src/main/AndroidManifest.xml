@@ -24,8 +24,9 @@
         <!-- main activity -->
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main"></activity>
-        <activity android:name=".activity.favorite.FavoriteActivity"></activity>
+            android:label="@string/title_activity_main" />
+        <activity android:name=".activity.favorite.FavoriteActivity" />
+        <activity android:name=".activity.signup.SignUpActivity"></activity>
     </application>
 
 </manifest>

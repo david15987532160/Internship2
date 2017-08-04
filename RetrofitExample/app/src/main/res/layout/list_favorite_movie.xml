@@ -7,7 +7,7 @@
     android:gravity="center_vertical"
     android:minHeight="72dp"
     android:orientation="horizontal"
-    android:padding="16dp"
+    android:padding="8dp"
     android:weightSum="3">
 
     <ImageView
@@ -31,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:paddingTop="3dp"
             android:paddingLeft="5dp"
             android:paddingRight="16dp"
-            android:textColor="@color/colorBlack"
+            android:paddingTop="3dp"
+            android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -43,30 +43,30 @@
             android:id="@+id/release_dateFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="3dp"
             android:paddingLeft="5dp"
             android:paddingRight="16dp"
-            android:textColor="@color/colorGreyLight" />
+            android:paddingTop="3dp"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/genresFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:paddingTop="3dp"
             android:paddingLeft="5dp"
             android:paddingRight="16dp"
-            android:textColor="@color/colorGreyLight" />
+            android:paddingTop="3dp"
+            android:textColor="@color/colorWhite" />
 
         <!--<TextView-->
-            <!--android:id="@+id/descriptionFav"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:maxLines="3"-->
-            <!--android:paddingTop="3dp"-->
-            <!--android:paddingRight="16dp"-->
-            <!--android:paddingLeft="5dp"-->
-            <!--android:textColor="@color/colorGreyLight" />-->
+        <!--android:id="@+id/descriptionFav"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:maxLines="3"-->
+        <!--android:paddingTop="3dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:paddingLeft="5dp"-->
+        <!--android:textColor="@color/colorGreyLight" />-->
 
     </LinearLayout>
 
@@ -90,7 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="5.0" />
+            android:text="5.0"
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 
 </LinearLayout>
