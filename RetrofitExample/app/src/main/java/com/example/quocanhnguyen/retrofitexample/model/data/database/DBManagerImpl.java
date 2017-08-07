@@ -40,22 +40,48 @@ public class DBManagerImpl implements DBManager {
                     error = true;
                     return;
                 }
-                if (username.equals("quocanh")) {
+                if (username.equals(SharedPrefs.USERNAME_SIGNUP) && password.equals(SharedPrefs.PASSWORD_SIGNUP)) {
                     listener.onSuccess();
                 } else {
-                    listener.onIncorrectUsername();
-                    error = true;
-                    return;
-                }
-                if (password.equals("123")) {
-                    listener.onSuccess();
-                } else {
-                    listener.onIncorrectPassword();
+                    listener.onIncorrectUsernameorPassword();
                     error = true;
                     return;
                 }
                 if (!error)
                     listener.onSuccess();
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void SignUp(final String username, final String password, final String confirm, final onSignUpFinished listener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                boolean error = false;
+                if (TextUtils.isEmpty(username)) {
+                    listener.onUsernameError();
+                    error = true;
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    listener.onPasswordError();
+                    error = true;
+                    return;
+                }
+                if (TextUtils.isEmpty(confirm)) {
+                    listener.onConfirmError();
+                    error = true;
+                    return;
+                }
+                if (!confirm.equals(password)) {
+                    listener.onConfirmNotMatch();
+                    error = true;
+                    return;
+                }
+                if (!error) {
+                    listener.onSuccess();
+                }
             }
         }, 2000);
     }

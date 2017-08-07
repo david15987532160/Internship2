@@ -13,9 +13,20 @@ public interface DBManager {
 
         void onPasswordError();
 
-        void onIncorrectUsername();
+        void onIncorrectUsernameorPassword();
 
-        void onIncorrectPassword();
+        void onSuccess();
+    }
+
+    interface onSignUpFinished {
+
+        void onUsernameError();
+
+        void onPasswordError();
+
+        void onConfirmError();
+
+        void onConfirmNotMatch();
 
         void onSuccess();
     }
@@ -38,6 +49,8 @@ public interface DBManager {
     }
 
     void Login(String username, String password, onLoginFinishedListener listener);
+
+    void SignUp(String username, String password, String confirm, onSignUpFinished listener);
 
     void findTop_ratedMovieItems(onFinishedTop_ratedListener listener);
 

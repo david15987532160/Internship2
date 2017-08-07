@@ -8,6 +8,8 @@
     <string name="title_activity_main">List of movie</string>
     <string name="username_error">Username cannot be empty</string>
     <string name="password_error">Password cannot be empty</string>
+    <string name="confirm_password_error">Please confirm your password</string>
+    <string name="password_not_match">Please confirm your password again</string>
     <string name="incorrect_username_password">Incorrect username or password</string>
     <string name="action_back">action_back</string>
     <string name="action_forward">action_forward</string>

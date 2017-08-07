@@ -9,9 +9,7 @@ public interface LoginView {
 
     void setPasswordError();
 
-    void setincorrectUsername();
-
-    void setincorrectPassword();
+    void setincorrectUsernameorPassword();
 
     void toHomeScreen();
 }

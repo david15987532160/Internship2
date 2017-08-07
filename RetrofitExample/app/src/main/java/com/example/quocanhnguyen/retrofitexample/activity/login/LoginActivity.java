@@ -99,12 +99,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override
-    public void setincorrectUsername() {
-        Toast.makeText(this, getString(R.string.incorrect_username_password), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void setincorrectPassword() {
+    public void setincorrectUsernameorPassword() {
         Toast.makeText(this, getString(R.string.incorrect_username_password), Toast.LENGTH_SHORT).show();
     }
 

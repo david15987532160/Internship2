@@ -44,17 +44,9 @@ public class LoginPresenterImpl implements LoginPresenter, DBManager.onLoginFini
     }
 
     @Override
-    public void onIncorrectUsername() {
+    public void onIncorrectUsernameorPassword() {
         if (loginView != null) {
-            loginView.setincorrectUsername();
-            loginView.hideProgressBar();
-        }
-    }
-
-    @Override
-    public void onIncorrectPassword() {
-        if (loginView != null) {
-            loginView.setincorrectPassword();
+            loginView.setincorrectUsernameorPassword();
             loginView.hideProgressBar();
         }
     }

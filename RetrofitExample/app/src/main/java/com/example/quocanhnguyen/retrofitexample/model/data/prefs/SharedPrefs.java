@@ -12,6 +12,8 @@ public class SharedPrefs {
     private static final String PREFS_NAME = "my_shared_preferences";
     public static final String USERNAME_KEY = "username";
     public static final String PASSWORD_KEY = "password";
+    public static String USERNAME_SIGNUP = "quocanh";
+    public static String PASSWORD_SIGNUP = "123";
     public static final List<String> ID = new ArrayList<>();
     public static final String API_KEY = "1cc34413d9db3cca9838cf168604cc36";
 //    public static final String ID = "";
