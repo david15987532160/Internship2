@@ -21,12 +21,19 @@
             </intent-filter>
         </activity>
 
+        <!--signup favorite-->
+        <activity android:name=".activity.signup.SignUpActivity" />
+
         <!-- main activity -->
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".activity.favorite.FavoriteActivity" />
-        <activity android:name=".activity.signup.SignUpActivity"></activity>
+
+        <!--favorite activity-->
+        <activity
+            android:name=".activity.favorite.FavoriteActivity"
+            android:label="@string/favorite_list" />
+
     </application>
 
 </manifest>

@@ -13,5 +13,6 @@
     <string name="incorrect_username_password">Incorrect username or password</string>
     <string name="action_back">action_back</string>
     <string name="action_forward">action_forward</string>
+    <string name="favorite_list">Favorite list</string>
 
 </resources>

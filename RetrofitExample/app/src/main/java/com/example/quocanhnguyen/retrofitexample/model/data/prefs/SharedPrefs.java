@@ -80,5 +80,4 @@ public class SharedPrefs {
     public static Long get(String key, Long defValue) {
         return sharedPreferences.getLong(key, defValue);
     }
-
 }

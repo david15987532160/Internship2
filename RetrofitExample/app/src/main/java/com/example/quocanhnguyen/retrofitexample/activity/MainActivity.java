@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView recyclerView;
     @BindView(R.id.progressMain)
     ProgressBar progressBar;
-    MainPresenter presenter;
+    private MainPresenter presenter;
 
     MoviesAdapter adapter;
     Boolean exit = false;
@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     // design MVP pattern
-
     @Override
     protected void onDestroy() {
         presenter.onDestroy();
@@ -222,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    // item click
     @Override
     public void onClick(View view, int position) {
         if (presenter != null) {
