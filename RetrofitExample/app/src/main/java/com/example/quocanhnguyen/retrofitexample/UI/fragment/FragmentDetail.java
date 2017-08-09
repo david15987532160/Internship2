@@ -43,7 +43,7 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
                 isLiked = true;
             }
         }
-        if (isLiked == true)
+        if (isLiked)
             view.findViewById(R.id.addFavorite).setBackgroundResource(R.drawable.star);
         webView.setWebChromeClient(new MyWebChromeClient(getContext()));
 //        webView.setWebChromeClient(new WebChromeClient());

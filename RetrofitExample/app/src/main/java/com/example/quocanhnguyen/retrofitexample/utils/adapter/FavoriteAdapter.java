@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +51,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     public FavoriteAdapter.FavoriteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(layout, parent, false);
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.scale_list);
+        view.startAnimation(animation);
 
         return new FavoriteViewHolder(view);
     }
@@ -64,7 +68,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         stringBuilder.append("Genres: ");
         for (int i = 0; i < movie.getGenres().size(); ++i) {
             if (i == movie.getGenres().size() - 1) {
-                stringBuilder.append(movie.getGenres().get(i).getName());
+                stringBuilder.append(movie.getGenres().get(i).getName() + ".");
             } else {
                 stringBuilder.append(movie.getGenres().get(i).getName() + ", ");
             }

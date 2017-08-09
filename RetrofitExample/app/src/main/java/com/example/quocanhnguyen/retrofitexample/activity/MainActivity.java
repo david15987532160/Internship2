@@ -29,7 +29,6 @@ import com.example.quocanhnguyen.retrofitexample.utils.adapter.MoviesAdapter;
 import com.example.quocanhnguyen.retrofitexample.utils.adapter.RecycleTouchListener;
 import com.snappydb.SnappydbException;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -44,14 +43,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressBar progressBar;
     private MainPresenter presenter;
 
-    MoviesAdapter adapter;
-    Boolean exit = false;
+    private MoviesAdapter adapter;
+    private boolean exit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         presenter = new MainPresenterImpl(this, new DBManagerImpl());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,
@@ -114,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Your favorite list is empty", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
-                    intent.putExtra("api", SharedPrefs.API_KEY);
-                    intent.putExtra("id", (Serializable) SharedPrefs.ID);
                     startActivity(intent);
                 }
                 break;

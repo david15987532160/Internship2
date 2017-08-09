@@ -35,11 +35,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.signUp_link).setOnClickListener(this);
         SharedPrefs.Init(getApplicationContext());
         edtUsername.setText(SharedPrefs.get(SharedPrefs.USERNAME_KEY, ""));
+//        edtUsername.setText(SharedPrefs.USERNAME_KEY);
         edtPassword.setText(SharedPrefs.get(SharedPrefs.PASSWORD_KEY, ""));
+//        edtPassword.setText(SharedPrefs.PASSWORD_KEY);
         loginPresenter = new LoginPresenterImpl(this);
     }
 

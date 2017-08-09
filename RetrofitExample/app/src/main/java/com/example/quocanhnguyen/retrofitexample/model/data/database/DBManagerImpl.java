@@ -22,6 +22,7 @@ public class DBManagerImpl implements DBManager {
 
     private List<Movie> movies;
     private MovieDetails movieDetails;
+//    private List<String> ID = new ArrayList<>();
     private List<MovieDetails> list = new ArrayList<>();
 
     @Override
@@ -160,6 +161,11 @@ public class DBManagerImpl implements DBManager {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+//                if (SharedPrefs.ID.isEmpty()) {
+//                    for (int i = 0; i < ID.size(); ++i) {
+//                        SharedPrefs.ID.add(new String(ID.get(i)));
+//                    }
+//                }
                 final ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
                 for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
                     Call<MovieDetails> detailsCall = apiInterface.getMovie_Details(Integer.parseInt(SharedPrefs.ID.get(i)), SharedPrefs.API_KEY);
@@ -179,5 +185,8 @@ public class DBManagerImpl implements DBManager {
                 }
             }
         }, 2000);
+//        for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
+//            ID.add(new String(SharedPrefs.ID.get(i)));
+//        }
     }
 }
