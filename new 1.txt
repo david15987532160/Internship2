@@ -1,0 +1,5 @@
+7e8f60e325cd06e164799af1e317d7a7
+1cc34413d9db3cca9838cf168604cc36: themoviedb.org API
+3973e82d0acd715cb6760d8640a35d25: openweathermap.org API
+https://image.tmdb.org/t/p/original/{code_of_image}.jpg (https://image.tmdb.org/t/p/original/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg)
+http://api.openweathermap.org/data/2.5/weather? (http://api.openweathermap.org/data/2.5/weather?id=1566083&appid=3973e82d0acd715cb6760d8640a35d25)
