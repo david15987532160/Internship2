@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.quocanhnguyen.mediaapp.MainActivity">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:padding="5dp"
+        android:textSize="24dp"
+        android:textColor="#fff"
+        android:text="Name of song"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+
+        android:id="@+id/imageViewPre"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/seekBar"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/black"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:scaleType="fitXY"
+        android:src="@drawable/previous" />
+
+    <ImageButton
+
+        android:id="@+id/imageViewPlay"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/seekBar"
+        android:layout_marginStart="47dp"
+        android:layout_toEndOf="@+id/imageViewPre"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/play" />
+
+    <ImageButton
+
+        android:id="@+id/imageViewNext"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignEnd="@+id/seekBar"
+        android:layout_below="@+id/seekBar"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/next" />
+
+    <ImageButton
+
+        android:id="@+id/imageViewStop"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/seekBar"
+        android:layout_marginEnd="30dp"
+        android:layout_toStartOf="@+id/imageViewNext"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/stop" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewPre"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/textViewTimeSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekBar"
+        android:layout_alignStart="@+id/seekBar"
+        android:text="00:00"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textViewTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekBar"
+        android:layout_alignEnd="@+id/seekBar"
+        android:text="00:00"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageViewDisk"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/music_cd"
+        android:layout_above="@+id/textViewTimeSong"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

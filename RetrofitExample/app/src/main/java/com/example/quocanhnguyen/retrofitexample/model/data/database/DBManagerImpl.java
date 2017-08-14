@@ -1,5 +1,6 @@
 package com.example.quocanhnguyen.retrofitexample.model.data.database;
 
+import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,6 +12,13 @@ import com.example.quocanhnguyen.retrofitexample.model.detail.MovieDetails;
 import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 import com.example.quocanhnguyen.retrofitexample.model.movie.MoviesResponse;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +30,6 @@ public class DBManagerImpl implements DBManager {
 
     private List<Movie> movies;
     private MovieDetails movieDetails;
-//    private List<String> ID = new ArrayList<>();
     private List<MovieDetails> list = new ArrayList<>();
 
     @Override
@@ -175,6 +182,7 @@ public class DBManagerImpl implements DBManager {
                             movieDetails = response.body();
                             list.add(movieDetails);
                             listener.onFinishedFavorite(list);
+                            writeToFile(String.valueOf(movieDetails.getId()));
                         }
 
                         @Override
@@ -188,5 +196,90 @@ public class DBManagerImpl implements DBManager {
 //        for (int i = 0; i < SharedPrefs.ID.size(); ++i) {
 //            ID.add(new String(SharedPrefs.ID.get(i)));
 //        }
+    }
+
+    @Override
+    public void writeToFile(String data) {
+        try {
+            File f = new File("D:\\QuocAnhPham\\ID.txt");
+            if (!f.exists())
+                f.mkdirs();
+            FileWriter fileWriter = new FileWriter(f);
+
+            fileWriter.write(data);
+            fileWriter.close();
+        } catch (IOException e) {
+            Log.e("Error!!!", "Fail to write file: " + e.toString());
+        }
+//        try {
+//            FileOutputStream fos = new FileOutputStream("D:\\QuocAnhPham\\MiloNescau\\RetrofitExample\\app\\src\\main\\assets\\ID.txt");
+//            DataOutputStream dos = new DataOutputStream(fos);
+//
+//            dos.write(Integer.parseInt(data));
+//
+//            fos.close();
+//            dos.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            Log.e("Error!!!", "Fail to write file: " + e.toString());
+//        }
+        /*File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        if (!path.exists())
+            path.mkdirs();
+        File file = new File(path, "ID.txt");
+
+        try {
+            file.createNewFile();
+            FileOutputStream fout = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fout);
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+
+            fout.flush();
+            fout.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            Log.e("Error!!!", "Fail to write file: " + e.toString());
+        }*/
+//        try {
+//            OutputStreamWriter outputStream;
+//            outputStream = new OutputStreamWriter(context.openFileOutput("ID.txt", Context.MODE_PRIVATE));
+//            outputStream.write(data);
+//            outputStream.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            Log.e("Error!!!", "Fail to write file: " + e.toString());
+//        }
+    }
+
+    @Override
+    public String readFromFile(Context context) {
+        String result = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("ID.txt");
+
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+                String content = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((content = bufferReader.readLine()) != null) {
+                    stringBuilder.append(content);
+                }
+                inputStream.close();
+                result = stringBuilder.toString();
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("Error!!!", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("Error!!!", "Can not read file: " + e.toString());
+        }
+
+        return result;
     }
 }

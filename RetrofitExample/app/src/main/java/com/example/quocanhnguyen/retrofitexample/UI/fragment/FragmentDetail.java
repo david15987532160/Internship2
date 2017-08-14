@@ -80,6 +80,7 @@ public class FragmentDetail extends Fragment implements View.OnClickListener {
                 }
                 if (!isAdded) {
                     SharedPrefs.ID.add(new String(String.valueOf(ID)));
+//                    SharedPrefs.put();
                     v.findViewById(R.id.addFavorite).setBackgroundResource(R.drawable.star);
                     Toast.makeText(getContext(), bundle.getString("title") + " is added to favorite", Toast.LENGTH_SHORT).show();
                 } else {

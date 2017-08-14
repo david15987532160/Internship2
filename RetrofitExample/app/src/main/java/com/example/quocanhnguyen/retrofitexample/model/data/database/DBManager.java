@@ -1,5 +1,7 @@
 package com.example.quocanhnguyen.retrofitexample.model.data.database;
 
+import android.content.Context;
+
 import com.example.quocanhnguyen.retrofitexample.model.detail.MovieDetails;
 import com.example.quocanhnguyen.retrofitexample.model.movie.Movie;
 
@@ -59,4 +61,8 @@ public interface DBManager {
     void findPopularMovieItems(onFinishedPopularListener listener);
 
     void findFavoriteMovieItems(onFinishedFavoriteListener listener);
+
+    void writeToFile(String data);
+
+    String readFromFile(Context context);
 }

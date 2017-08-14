@@ -1,5 +1,7 @@
 package com.example.quocanhnguyen.retrofitexample.presenter;
 
+import android.content.Context;
+
 import com.example.quocanhnguyen.retrofitexample.activity.login.LoginView;
 import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManager;
 import com.example.quocanhnguyen.retrofitexample.model.data.database.DBManagerImpl;
@@ -8,6 +10,7 @@ public class LoginPresenterImpl implements LoginPresenter, DBManager.onLoginFini
 
     private LoginView loginView;
     private DBManager dbManager;
+    private Context context;
 
     public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
@@ -53,7 +56,10 @@ public class LoginPresenterImpl implements LoginPresenter, DBManager.onLoginFini
 
     @Override
     public void onSuccess() {
-        if (loginView != null)
+        if (loginView != null) {
+//            if (!dbManager.readFromFile(context).isEmpty())
+//                SharedPrefs.ID.add(new String(dbManager.readFromFile(context)));
             loginView.toHomeScreen();
+        }
     }
 }
